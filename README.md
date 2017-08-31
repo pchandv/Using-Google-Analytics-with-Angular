@@ -134,6 +134,6 @@ Awesome, now for every new transition to a new state in our application, we'd ge
 
 This is the immediate update on my google analytics dashboard:
 
-//image goes here
+//image go here
 
 And just like that, our application is now being tracked properly by google analytics, we get real-time update about the navigation history of visitors to our web application.
