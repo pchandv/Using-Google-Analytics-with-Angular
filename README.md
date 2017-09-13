@@ -5,7 +5,8 @@
 
 Clone the project repository by running the command below
 
-git clone https://github.com/Jordanirabor/Using-Google-Analytics-with-Angular
+`git clone https://github.com/Jordanirabor/Using-Google-Analytics-with-Angular`
+
 If you use https, use this instead
 
 
