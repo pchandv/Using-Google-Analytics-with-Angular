@@ -1,86 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>This is an app to display the services of google analytics on AngularJS</title>
-<style>
-
-a{
-	text-decoration: none;
-	border: 1px solid white;
-	background: black;
-  color: white;
-  padding-top: 2em;
-}
-
-body{
-background: grey;
-}
-h1{
-  text-align:center;
-}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S53V1WME05"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-S53V1WME05');
-</script>
+    <title>Button Click Tracking</title>
+    <!-- Google Analytics Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S53V1WME05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-S53V1WME05');
+    </script>
 </head>
-<body ng-app="myApp">
-<div ui-view class="root">
-<a ui-sref="first">This is the first page.</a>
-<a ui-sref="second">This is the second page.</a>
-<a ui-sref="third">This is the third page.</a>
-<h1>{{ title }}</h1>
-</div>
-</body>
-<script> 
-var app = angular.module("myApp", ['ui.router']);
-
-app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
-  $urlRouterProvider.otherwise('/');
-  $stateProvider
-  .state('index', {
-    url: '/',
-    templateUrl: 'index.html',
-    controller: function($scope){
-      $scope.title = 'I am the root page, ergo, submit thyself to me.'
-    }
-  })
-  .state('first', {
-    url: '/first',
-    templateUrl: 'first.html',
-     controller: function($scope){
-      $scope.title = 'I am the first page, let me have some of your money.'
-    }
-  })
-  .state('second', {
-    url: '/second',
-    templateUrl: 'second.html',
-     controller: function($scope){
-      $scope.title = 'I am the second page, ergo, tell me thy secrets.'
-    }
-  })
-  .state('third', {
-    url: '/third',
-    templateUrl: 'third.html',
-     controller: function($scope){
-      $scope.title = 'I am the third page, ergo, buy me a burger.'
-    }
-  })
-}]);
-
-app.run(['$location', '$window','$transitions', function($location, $window, $transitions){
-        $window.ga('create', 'UA-104469984-1', 'auto');
-        $transitions.onSuccess({}, function(){
-              $window.ga('send', 'pageview', $location.path());
+<body>
+  <input type="text" id="name"/>
+  <button id="button1">Button 1</button>
+  <button id="button2">Button 2</button>
+  <script>
+    // Track Button 1 click
+    document.getElementById('button1').addEventListener('click', function() {
+        gtag('event', 'button_click', {
+            'event_category': 'Button Clicks',
+            'event_label': 'Button 1 Clicked',
+            'txtboxvalue':document.getElementById('name').innerText
         });
-}])
+    });
 
+    // Track Button 2 click
+    document.getElementById('button2').addEventListener('click', function() {
+      
+        gtag('event', 'button_click', {
+            'event_category': 'Button Clicks',
+            'event_label': 'Button 2 Clicked',
+            'txtboxvalue':document.getElementById('name').innerText
+        });
+    });
 </script>
+
+</body>
 </html>
